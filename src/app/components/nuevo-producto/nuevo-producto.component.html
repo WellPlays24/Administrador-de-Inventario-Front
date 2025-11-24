@@ -1,0 +1,94 @@
+<div class="container mt-3">
+  <h2>Agregar Nuevo Producto</h2>
+
+  <form #productoForm="ngForm" (ngSubmit)="agregarProducto(productoForm)">
+    <div class="mb-3">
+      <label for="id" class="form-label">ID</label>
+      <input
+        type="number"
+        id="id"
+        name="id"
+        class="form-control"
+        required
+        [(ngModel)]="producto.id"
+        #id="ngModel"
+        min="1"
+      />
+      <div
+        class="text-danger"
+        *ngIf="id.invalid && (id.dirty || id.touched)"
+      >
+        El ID es obligatorio y debe ser mayor o igual a 1.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        class="form-control"
+        required
+        [(ngModel)]="producto.nombre"
+        #nombre="ngModel"
+      />
+      <div
+        class="text-danger"
+        *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+      >
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="categoria" class="form-label">Categoría</label>
+      <input
+        type="text"
+        id="categoria"
+        name="categoria"
+        class="form-control"
+        required
+        [(ngModel)]="producto.categoria"
+        #categoria="ngModel"
+      />
+      <div
+        class="text-danger"
+        *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)"
+      >
+        La categoría es obligatoria.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="precio" class="form-label">Precio</label>
+      <input
+        type="text"
+        id="precio"
+        name="precio"
+        class="form-control"
+        required
+        pattern="^[0-9]+(\.[0-9]{1,2})?$"
+        [(ngModel)]="producto.precio"
+        #precio="ngModel"
+      />
+      <div
+        class="text-danger"
+        *ngIf="precio.invalid && (precio.dirty || precio.touched)"
+      >
+        El precio es obligatorio y debe ser un número válido.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="productoForm.invalid">
+      Agregar Producto
+    </button>
+
+    <div *ngIf="mensajeError" class="alert alert-danger mt-3">
+      {{ mensajeError }}
+    </div>
+    <div *ngIf="mensajeExito" class="alert alert-success mt-3">
+      {{ mensajeExito }}
+    </div>
+  </form>
+</div>

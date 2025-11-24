@@ -1,0 +1,38 @@
+<div class="container mt-3">
+  <h2>Lista de Productos</h2>
+
+  <div class="mb-3">
+    <label for="filtroCategoria" class="form-label">Filtrar por Categoría:</label>
+    <select
+      id="filtroCategoria"
+      class="form-select"
+      [(ngModel)]="categoriaSeleccionada"
+    >
+      <option value="">-- Todas --</option>
+      <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="filtrarProductos().length === 0">
+    <p>No hay productos.</p>
+  </div>
+
+  <ul class="list-group" *ngIf="filtrarProductos().length > 0">
+    <li class="list-group-item" *ngFor="let producto of filtrarProductos()">
+      <strong>{{ producto.nombre }}</strong> - {{ producto.categoria }} -
+      ${{ producto.precio }} - 
+      <span
+        class="badge"
+        [class.bg-success]="producto.enStock"
+        [class.bg-danger]="!producto.enStock"
+        >
+        {{ producto.enStock ? 'En Stock' : 'Agotado' }}
+        </span>
+      <a
+        [routerLink]="['/producto', producto.id]"
+        class="btn btn-primary btn-sm float-end"
+        >Ver Detalle</a
+      >
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,30 @@
+<div class="container mt-3">
+  <h1>Administrador de Inventario - Dashboard</h1>
+
+  <p>Bienvenido al panel principal. Aquí tienes un resumen rápido de los productos:</p>
+
+  <ul class="list-group mb-3">
+    <li class="list-group-item">
+      <strong>Total de productos:</strong> {{ totalProductos }}
+    </li>
+    <li class="list-group-item">
+      <strong>Productos en stock:</strong> {{ productosEnStock }}
+    </li>
+    <li class="list-group-item">
+      <strong>Productos agotados:</strong> {{ productosAgotados }}
+    </li>
+  </ul>
+
+  <h3>Productos por Categoría</h3>
+  <ul class="list-group">
+    <li
+      class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor="let cat of categorias"
+    >
+      {{ cat }}
+      <span class="badge bg-primary rounded-pill">
+        {{ productosPorCategoria[cat] || 0 }}
+      </span>
+    </li>
+  </ul>
+</div>

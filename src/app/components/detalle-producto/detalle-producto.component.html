@@ -1,0 +1,17 @@
+<div class="container mt-3" *ngIf="producto; else noProducto">
+  <h2>Detalle de Producto</h2>
+  <p><strong>ID:</strong> {{ producto.id }}</p>
+  <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+  <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+  <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+  <p><strong>En Stock:</strong> {{ producto.enStock ? 'Sí' : 'No' }}</p>
+
+  <button class="btn btn-secondary" routerLink="/productos">Volver a Productos</button>
+</div>
+
+<ng-template #noProducto>
+  <div class="container mt-3">
+    <p>Producto no encontrado.</p>
+    <button class="btn btn-secondary" routerLink="/productos">Volver a Productos</button>
+  </div>
+</ng-template>
